@@ -29,13 +29,14 @@ jobs:
         ./gradlew assembleRelease -Dorg.gradle.java.home=$JAVA_HOME_17_X64
 
 
-      - name: Create GitHub Release
+
+    - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
         tag_name: v1.0.0
         name: Modernized UZDoom Mobile Port
         draft: false
         prerelease: false
-        files: app/build/outputs/apk/release/*.apk
+        files: "**/build/outputs/apk/**/*.apk"
         
         
