@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
     - name: Checkout Source Code
@@ -26,9 +28,14 @@ jobs:
         chmod +x gradlew
         ./gradlew assembleRelease -Dorg.gradle.java.home=$JAVA_HOME_17_X64
 
-    - name: Upload Prebuilt APK
-      uses: actions/upload-artifact@v4
+
+      - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
       with:
-        name: GZDoom-Android-APK
-        path: app/build/outputs/apk/release/*.apk
+        tag_name: v1.0.0
+        name: Modernized UZDoom Mobile Port
+        draft: false
+        prerelease: false
+        files: app/build/outputs/apk/release/*.apk
+        
         
