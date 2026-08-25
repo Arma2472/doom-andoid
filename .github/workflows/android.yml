@@ -17,12 +17,13 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: '17'
-        distribution: 'temurin'
-
-    - name: Build APK with Gradle
+        distribution: 'termurin'
+ 
+            - name: Build APK with Gradle
       run: |
         chmod +x gradlew
-        ./gradlew assembleRelease
+        ./gradlew assembleRelease -Dorg.gradle.java.home=$JAVA_HOME_17_X64
+        
 
     - name: Upload Prebuilt APK
       uses: actions/upload-artifact@v4
